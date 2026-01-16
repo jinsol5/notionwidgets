@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Quote</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Noto Sans KR", sans-serif;
+    }
+
+    .quote-box {
+      padding: 20px 24px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f8f9ff, #eef1ff);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .quote {
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 500;
+      color: #1f2937;
+    }
+
+    .tag {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #6366f1;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-box">
+    <div class="quote" id="quote"></div>
+    <div class="tag">TODAY’S MINDSET</div>
+  </div>
+
+  <script>
+    const quotes = [
+      "오늘의 나를 배신하지 않는 선택을 하자.",
+      "작은 루틴 하나가 인생을 바꾼다.",
+      "지금 미루는 게 미래의 발목을 잡는다.",
+      "완벽하지 않아도, 멈추지만 말자.",
+      "아무도 안 볼 때의 태도가 진짜 실력이다.",
+      "의욕이 없어도 시스템은 작동해야 한다.",
+      "오늘을 대충 보내면, 내일은 더 힘들어진다.",
+      "꾸준함은 재능을 이긴다.",
+      "지금 이 순간도 방향이다.",
+      "하고 싶은 날만 하면 아무것도 안 된다."
+    ];
+
+    const today = new Date();
+    const seed =
+      today.getFullYear() * 10000 +
+      (today.getMonth() + 1) * 100 +
+      today.getDate();
+
+    const index = seed % quotes.length;
+    document.getElementById("quote").textContent = quotes[index];
+  </script>
+</body>
+</html>
