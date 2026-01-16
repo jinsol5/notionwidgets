@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Quote</title>
+
   <style>
     body {
       margin: 0;
@@ -22,19 +23,21 @@
 
     .quote {
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.65;
       font-weight: 500;
       color: #1f2937;
+      white-space: pre-line;
     }
 
     .author {
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 12px;
       color: #6b7280;
       font-style: italic;
     }
   </style>
 </head>
+
 <body>
   <div class="quote-box">
     <div class="quote" id="quote"></div>
@@ -43,8 +46,15 @@
 
   <script>
     const quotes = [
-      
-        {
+      {
+        text: "저마다의 일생에는, 특히 그 일생이 동터 오르는 여명기에는 모든 것을 결정짓는 한순간이 있다.",
+        author: "슈테판 츠바이크"
+      },
+      {
+        text: "문장은 천하의 지극한 보물이다. 문장가는 조물주의 동굴에서 심오한 진실을 꺼낸다.",
+        author: "유종원"
+      },
+      {
           text: "저마다의 일생에는, 특히 그 일생이 동터 오르는 여명기에는 모든 것을 결정짓는 한순간이 있다.",
           author: "슈테판 츠바이크"
         },
@@ -316,19 +326,30 @@
         text: "지금 미루는 게 미래의 발목을 잡는다.",
         author: ""
       }
+      // ← 여기에 계속 추가
     ];
 
     const today = new Date();
+
     const seed =
       today.getFullYear() * 10000 +
       (today.getMonth() + 1) * 100 +
       today.getDate();
 
     const index = seed % quotes.length;
+    const todayQuote = quotes[index];
 
-    document.getElementById("quote").textContent = quotes[index].text;
-    document.getElementById("author").textContent =
-      "— " + quotes[index].author;
+    const quoteEl = document.getElementById("quote");
+    const authorEl = document.getElementById("author");
+
+    quoteEl.textContent = todayQuote.text;
+
+    if (todayQuote.author && todayQuote.author.trim() !== "") {
+      authorEl.textContent = "— " + todayQuote.author;
+      authorEl.style.display = "block";
+    } else {
+      authorEl.style.display = "none";
+    }
   </script>
 </body>
 </html>
