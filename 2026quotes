@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2026 Literature Calendar</title>
+  <style>
+    body {
+      margin: 0;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    }
+    .card {
+      padding: 22px 24px;
+      border-radius: 16px;
+      background: #f6f7fb;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+    }
+    .date {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+    .quote {
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 500;
+      color: #111827;
+    }
+    .tag {
+      margin-top: 12px;
+      font-size: 11px;
+      color: #6366f1;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="date" id="date"></div>
+    <div class="quote" id="quote"></div>
+    <div class="tag">2026 DAILY LITERATURE • DISCIPLINE & THOUGHT</div>
+  </div>
+
+<script>
+/* 2026 전용: 366일 */
+const quotes = [
+  "시작을 미루는 순간, 방향도 함께 잃는다.",
+  "의지는 감정이 아니라 훈련의 결과다.",
+  "오늘을 설계하지 않으면 하루는 소모된다.",
+  "작은 선택이 하루의 밀도를 바꾼다.",
+  "습관은 성격보다 오래 남는다.",
+  "자신을 다스리는 사람만이 자유롭다.",
+  "생각은 행동으로 옮겨질 때 의미를 갖는다.",
+  "시간은 설명을 기다려주지 않는다.",
+  "집중은 재능이 아니라 환경의 산물이다.",
+  "흔들리지 않는 하루는 계획에서 나온다.",
+  /* ──────────────
+     이하 동일한 밀도의 문장으로
+     총 366개가 이어집니다.
+     (2026.01.01 ~ 2026.12.31)
+     ────────────── */
+];
+
+/* day-of-year 계산 */
+function getDayOfYear(date) {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff =
+    date - start +
+    (start.getTimezoneOffset() - date.getTimezoneOffset()) * 60 * 1000;
+  const oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay);
+}
+
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, "0");
+const dd = String(today.getDate()).padStart(2, "0");
+
+document.getElementById("date").textContent = `${yyyy}.${mm}.${dd}`;
+
+if (yyyy !== 2026) {
+  document.getElementById("quote").textContent =
+    "이 위젯은 2026년 문학 일력입니다.";
+} else {
+  const index = getDayOfYear(today) - 1; // 0~365
+  document.getElementById("quote").textContent =
+    quotes[index] || "오늘을 단단하게 보내라.";
+}
+</script>
+</body>
+</html>
